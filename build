@@ -1,4 +1,0 @@
-#!/bin/sh
-
-export ARCH=arm
-export CROSS_COMPILE=/home/amphorion/android/system/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7/bin/arm-eabi-

@@ -495,8 +495,8 @@ static struct regulator_init_data saw_s0_init_data = {
 		.constraints = {
 			.name = "8901_s0",
 			.valid_ops_mask = REGULATOR_CHANGE_VOLTAGE,
-			.min_uV = 700000,
-			.max_uV = 1450000,
+			.min_uV = 840000,
+			.max_uV = 1250000,
 		},
 		.consumer_supplies = vreg_consumers_8901_S0,
 		.num_consumer_supplies = ARRAY_SIZE(vreg_consumers_8901_S0),
@@ -506,8 +506,8 @@ static struct regulator_init_data saw_s1_init_data = {
 		.constraints = {
 			.name = "8901_s1",
 			.valid_ops_mask = REGULATOR_CHANGE_VOLTAGE,
-			.min_uV = 700000,
-			.max_uV = 1450000,
+			.min_uV = 840000,
+			.max_uV = 1250000,
 		},
 		.consumer_supplies = vreg_consumers_8901_S1,
 		.num_consumer_supplies = ARRAY_SIZE(vreg_consumers_8901_S1),
@@ -1598,7 +1598,7 @@ static struct msm_camera_sensor_flash_data flash_s5k3h1gx = {
 
 static struct camera_flash_cfg msm_camera_sensor_flash_cfg = {
 	.low_temp_limit		= 5,
-	.low_cap_limit		= 1,
+	.low_cap_limit		= 30,
 };
 
 static struct msm_camera_sensor_info msm_camera_sensor_s5k3h1gx_data = {
@@ -2703,8 +2703,8 @@ static struct regulator_consumer_supply vreg_consumers_PM8901_S4_PC[] = {
 /* RPM early regulator constraints */
 static struct rpm_regulator_init_data rpm_regulator_early_init_data[] = {
 	/*	 ID       a_on pd ss min_uV   max_uV   init_ip    freq */
-	RPM_SMPS(PM8058_S0, 0, 1, 1,  500000, 1450000, SMPS_HMIN, 1p92),
-	RPM_SMPS(PM8058_S1, 0, 1, 1,  500000, 1450000, SMPS_HMIN, 1p92),
+	RPM_SMPS(PM8058_S0, 0, 1, 1,  500000, 1250000, SMPS_HMIN, 1p92),
+	RPM_SMPS(PM8058_S1, 0, 1, 1,  500000, 1250000, SMPS_HMIN, 1p92),
 };
 
 /* RPM regulator constraints */
@@ -2829,7 +2829,7 @@ static struct flashlight_platform_data flashlight_data = {
 	.gpio_init 		= config_flashlight_gpios,
 	.torch 			= PYRAMID_TORCH_EN,
 	.flash 			= PYRAMID_FLASH_EN,
-	.flash_duration_ms 	= 600,
+	.flash_duration_ms 	= 500,
 	.led_count 		= 2,
 };
 
@@ -3940,13 +3940,13 @@ static int pm8058_pwm_config(struct pwm_device *pwm, int ch, int on)
 	case 6:
 		id = PM_PWM_LED_FLASH;
 		mode = PM_PWM_CONF_PWM1;
-		max_mA = 300;
+		max_mA = 250;
 		break;
 
 	case 7:
 		id = PM_PWM_LED_FLASH1;
 		mode = PM_PWM_CONF_PWM1;
-		max_mA = 300;
+		max_mA = 250;
 		break;
 
 	default:
