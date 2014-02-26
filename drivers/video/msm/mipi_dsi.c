@@ -594,7 +594,7 @@ static struct regulator *l1_3v;
 static struct regulator *lvs1_1v8;
 static struct regulator *l4_1v8;
 
-static int panel_uv = 250;
+static int panel_uv = 50;
 module_param(panel_uv, int, 0664);
 
 void mipi_dsi_panel_uv(int panel_undervolt)
@@ -608,7 +608,7 @@ static void pyramid_panel_power(int on)
 	int ret;
 	int rc;
 	int panel_voltage;
-	static int panel_voltage_after = 2850000;
+	static int panel_voltage_after = 3050000;
 
 	panel_voltage = (3100000 - (panel_uv * 1000));
 
@@ -635,7 +635,7 @@ static void pyramid_panel_power(int on)
 			}
 		}
 
-		ret = regulator_set_voltage(l1_3v, 2850000, 2850000);
+		ret = regulator_set_voltage(l1_3v, 3050000, 3050000);
 		if (ret) {
 			PR_DISP_ERR("%s: error setting l1_3v voltage\n", __func__);
 			goto fail;
@@ -662,7 +662,7 @@ static void pyramid_panel_power(int on)
 		init = 1;
 	}
 
-	if (init && (panel_voltage != 2850000)) {
+	if (init && (panel_voltage != 3050000)) {
 		// Do nothing if panel voltage has already been transformed
 		if (panel_voltage_after != panel_voltage) {
 			// Check if requested panel voltage is in bounds
